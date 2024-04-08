@@ -18,8 +18,18 @@ use Illuminate\Support\Facades\Route;
     return view('welcome');
 });*/
 Route::group(['namespace' => '\App\Http\Controllers\Main'], function () {
-    Route::get('/', 'IndexController');
+    Route::get('/', 'IndexController@index')->name('main.index');
+    Route::get('/about', 'IndexController@about')->name('main.about');
+    Route::get('/soon', 'IndexController@soon')->name('main.soon');
+    Route::get('/post', 'IndexController@show')->name('main.show');
 });
+
+
+
+//Route::group(['namespace' => '\App\Http\Controllers\Post'], function () {
+//    Route::get('/post', 'IndexController@index')->name('post.index');
+//});
+
 //Route::group(['middleware' => ['guest']], function () {
 //    Route::group(['namespace' => '\App\Http\Controllers\Guest', 'prefix' => 'guest'], function () {
 //        Route::get('/login', 'IndexController@loginForm')->name('login.create');
@@ -41,11 +51,12 @@ Route::group(['namespace' => '\App\Http\Controllers\Personal', 'prefix' => 'pers
         Route::get('/', 'IndexController')->name('comment.index');
     });
 });
-Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin', 'verified']], function () {
+//, 'middleware' => ['auth','admin', 'verified']
+Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin'], function () {
     Route::group(['namespace' => '\App\Http\Controllers\Admin\Main', 'prefix' => ''], function () {
         Route::get('/', 'IndexController')->name('admin.main.index');
-    } );
-    Route::group(['namespace' => '\App\Http\Controllers\Admin\User',  'prefix' => 'users'], function () {
+    });
+    Route::group(['namespace' => '\App\Http\Controllers\Admin\User', 'prefix' => 'users'], function () {
         Route::get('/', 'IndexController')->name('user.index');
         Route::get('/create', 'CreateController')->name('user.create');
         Route::post('/', 'StoreController')->name('user.store');
@@ -56,9 +67,9 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin',
 //        Route::get('/{user}/edit', function () {
 //            return "Привет, роут работает.";
 //        })->name('user.edit');
-    } );
+    });
 
-    Route::group(['namespace' => '\App\Http\Controllers\Admin\Category',  'prefix' => 'category'], function () {
+    Route::group(['namespace' => '\App\Http\Controllers\Admin\Category', 'prefix' => 'category'], function () {
         Route::get('/', 'IndexController')->name('category.index');
         Route::get('/create', 'CreateController')->name('category.create');
         Route::post('/', 'StoreController')->name('category.store');
@@ -69,8 +80,8 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin',
 //        Route::get('/{category}/edit', function () {
 //            return "Привет, роут работает.";
 //        })->name('category.edit');
-    } );
-    Route::group(['namespace' => '\App\Http\Controllers\Admin\Post',  'prefix' => 'posts'], function () {
+    });
+    Route::group(['namespace' => '\App\Http\Controllers\Admin\Post', 'prefix' => 'posts'], function () {
         Route::get('/', 'IndexController')->name('post.index');
         Route::get('/create', 'CreateController')->name('post.create');
         Route::post('/', 'StoreController')->name('post.store');
@@ -81,8 +92,8 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin',
 //        Route::get('/{post}/edit', function () {
 //            return "Привет, роут работает.";
 //        })->name('category.edit');
-    } );
-    Route::group(['namespace' => '\App\Http\Controllers\Admin\Tag',  'prefix' => 'tags'], function () {
+    });
+    Route::group(['namespace' => '\App\Http\Controllers\Admin\Tag', 'prefix' => 'tags'], function () {
         Route::get('/', 'IndexController')->name('tag.index');
         Route::get('/create', 'CreateController')->name('tag.create');
         Route::post('/', 'StoreController')->name('tag.store');
@@ -93,7 +104,7 @@ Route::group(['namespace' => '\App\Http\Controllers\Admin', 'prefix' => 'admin',
 //        Route::get('/{tag}/edit', function () {
 //            return "Привет, роут работает.";
 //        })->name('category.edit');
-    } );
+    });
 
 });
 

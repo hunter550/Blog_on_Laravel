@@ -17,30 +17,30 @@
 <header class="edica-header">
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light" style="margin-top: 30px; padding: 0rem !important">
-            <a class="navbar-brand" href="index.html"><img src="{{asset('assets/images/logo.svg')}}" alt="Edica"></a>
+            <a class="navbar-brand" href="{{route('main.index')}}"><img src="{{asset('assets/images/logo.svg')}}" alt="Edica"></a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="edicaMainNav">
                 <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{route('main.index')}}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
+                        <a class="nav-link" href="{{route('main.about')}}">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="blogDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Blog</a>
                         <div class="dropdown-menu" aria-labelledby="blogDropdown">
-                            <a class="dropdown-item" href="blog.html">Blog Archive</a>
-                            <a class="dropdown-item" href="blog-single.html">Blog Post</a>
+                            <a class="dropdown-item" href="{{route('main.index')}}">Posts</a>
+                            <a class="dropdown-item" href="{{route('main.show')}}">Post single</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-                            <a class="dropdown-item" href="404.html">404</a>
-                            <a class="dropdown-item" href="coming-soon.html">Coming Soon</a>
+                            <a class="dropdown-item" href="{{url('404')}}">404</a>
+                            <a class="dropdown-item" href="{{route('main.soon')}}">Coming Soon</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -69,11 +69,11 @@
 @yield('content')
 
 
-<footer class="edica-footer" data-aos="fade-up">
+<footer class="edica-footer" data-aos="fade-up" style="margin-top: 0px;">
     <div class="container">
         <div class="row footer-widget-area">
             <div class="col-md-3">
-                <a href="index.html" class="footer-brand-wrapper">
+                <a href="{{route('main.index')}}" class="footer-brand-wrapper">
                     <img src="{{asset('assets/images/logo.svg')}}" alt="edica logo">
                 </a>
                 <p class="contact-details">hello@edica.com</p>
@@ -135,10 +135,40 @@
 <script src="{{asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/vendors/aos/aos.js')}}"></script>
 <script src="{{asset('assets/js/main.js')}}"></script>
+<script src="{{asset('assets/js/timer.js')}}"></script>
 <script>
     AOS.init({
         duration: 1000
     });
+//    ----------------- Таймер на странице -----------------------------------------
+//     var endDate = new Date().getTime() + 1000800000;
+//
+//     var x = setInterval(function() {
+//
+//         var now =  new Date().getTime();
+//
+//         var timeRemaining = endDate - now;
+//
+//         var daysRemaining = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+//         var hoursRemaining = Math.floor((timeRemaining % (1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+//         var minutesRemaining = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+//         var secondsRemaining = Math.floor((timeRemaining % (1000 * 60)) / (1000));
+//
+//         document.getElementById("days").innerHTML = daysRemaining;
+//         document.getElementById("hours").innerHTML = hoursRemaining;
+//         document.getElementById("minutes").innerHTML = minutesRemaining;
+//         document.getElementById("seconds").innerHTML = secondsRemaining;
+//
+//         if (timeRemaining < 0) {
+//             clearInterval(x);
+//             document.getElementById("days").innerHTML ='0';
+//             document.getElementById("hours").innerHTML ='0';
+//             document.getElementById("minutes").innerHTML ='0' ;
+//             document.getElementById("seconds").innerHTML = '0';
+//             alert("Thank you for your patience");
+//         }
+//
+//     },1000);
 </script>
 </body>
 
